@@ -1,0 +1,35 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Quotemaker{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <p><a class="btn btn-primary" href="/admin/newpanel" role="button">New Panel</a></p>
+    <table class="table table-hover">
+        <tr>
+            <th>FENCE STYLE</th>
+            <th>HEIGHT</th>
+            <th>WIDTH</th>
+            <th>POST LENGTH</th>
+            <th>PRICE</th>
+            <th>INSTALLATION</th>
+            <th></th>
+            <th></th>
+        </tr>
+    {% for panel in panels %}
+        <tr>
+            <td>{{panel.description}}</td>
+            <td>{{panel.height}}</td>
+            <td>{{panel.width}}</td>
+            <td>{{panel.post_length}}</td>
+            <td>{{panel.formattedprice}}</td>
+            <td>{{panel.formattedinstallation}}</td>
+            <td><a href="/admin/editpanel?id={{panel.id}}" title="Edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+            <td><a href="/admin/deletepanel?id={{panel.id}}" title="Delete" onclick="return confirm('Are you sure you want to delete this panel?')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

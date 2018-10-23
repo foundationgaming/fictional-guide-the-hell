@@ -1,0 +1,40 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Quotemaker{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+  <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=4mdl9cbjkn4jukmi27f5gwvhwji7rt5flir6poer2psobk32"></script>
+  <script>
+  tinymce.init({
+    selector: '#email_settings_form_bodyText',
+    plugins: "textcolor",
+    menubar: false,
+    toolbar: "undo redo fontselect fontsizeselect forecolor bold italic link image",
+  });
+  </script>
+  <script>
+  tinymce.init({
+    selector: '#email_settings_form_footerText',    
+    plugins: "image link textcolor",
+    menubar: false,
+    toolbar: "undo redo fontselect fontsizeselect forecolor bold italic link image",
+    image_list: [
+        {title: 'Banner', value: '/assets/footer-logo.jpg'},
+        {title: 'Social', value: '/assets/footer-social.jpg'}
+    ]    
+  });
+  </script>
+
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-default">Save</button>
+    {{ form_end(form) }}
+    
+{% endblock %}

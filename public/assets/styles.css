@@ -1,0 +1,62 @@
+.input.form-control {
+    display: block;  /* allows labels to sit on input when inline */
+    margin-bottom: 15px; /* gives padding to bottom of inline inputs */
+}
+
+input.form-control.smallNumber {
+    width: 50px;
+}
+
+input.form-control.widthNumber {
+    width: 90px;
+}
+
+.main-nav .navbar-brand {
+    padding: 0;
+}
+
+.main-nav .navbar-brand>img {
+    height: 100%;
+    padding: 15px;
+    width: auto;
+}
+
+.main-nav .navbar-brand {
+    height: 100px;
+}
+
+.main-nav  .nav >li >a {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.main-nav .navbar-toggle {
+    padding: 10px;
+    margin: 25px 15px 25px 0;
+}
+
+.main-nav .navbar-inverse .navbar-nav > .active > a,
+.main-nav .navbar-inverse .navbar-nav > .active > a:hover,
+.main-nav .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #2a2a2a;
+}
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}

@@ -1,0 +1,26 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Quotemaker{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <p><a class="btn btn-primary" href="/admin/newcolour" role="button">New Colourbond Colour</a></p>
+    <table class="table table-hover">
+        <tr>
+            <th>COLOUR</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for colour in colours %}
+            <tr>
+                <td>{{colour.description}}</td>
+                {#<td style="background-color: #{{ colour.HEX_CODE }}; color: #{{ colour.HEX_CODE }}">{{colour.HEX_CODE}}</td>#}
+                <td><a href="/admin/editcolour?id={{colour.id}}" title="Edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="/admin/deletecolour?id={{colour.id}}" title="Delete" onclick="return confirm('Are you sure you want to delete this colour?')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

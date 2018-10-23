@@ -1,0 +1,13 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Quotemaker{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <h2>MYOB API Explorer</h2>
+    
+    {{ jsonData }}
+{% endblock %}

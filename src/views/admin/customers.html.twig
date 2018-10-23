@@ -1,0 +1,34 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Quotemaker{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <p><a class="btn btn-primary" href="/newcustomer" role="button">New Customer</a></p>
+    <table class="table table-hover">
+        <tr>
+            <th>CUSTOMER NAME</th>
+            <th>PHONE</th>
+            <th>MOBILE</th>
+            <th>EMAIL</th>
+            <th></th>
+        </tr>
+        
+        {% for customer in customers.Items %}
+            <tr>
+                <td>{{customer.FirstName}} {{customer.LastName}}</td>
+                <td>{{ customer.Addresses[0].Phone1 }}</td>                
+                <td>{{ customer.Addresses[0].Phone2 }}</td>
+                <td>{{ customer.Addresses[0].Email }}</td>
+                <td><a href="/admin/showMyobCustomer?id={{ customer.URI }}">View</a></td>
+            </tr>
+        {% endfor %}
+        
+    </table>
+
+    
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<table class="table table-condensed small">
+	<caption>Cost breakdown</caption>
+	<tr><th class="info" colspan="2">Materials</th></tr>
+	<tr><td>Rails</td><td class="text-right">${{ (costs.railsCost / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>RHS 35x65</td><td class="text-right">${{ (costs.rhs35x65Cost / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>RHS 65x65</td><td class="text-right">${{ (costs.rhs65x65Cost / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>D Latch</td><td class="text-right">${{ (costs.dLatchCost / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>Drop Bolt</td><td class="text-right">${{ (costs.dropBoltCost / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>Sheets</td><td class="text-right">${{ (costs.sheetsCost / 100) | round(2, 'common') | number_format(2)}}</td></tr>		
+	<tr><td>Hinges</td><td class="text-right">${{ (costs.hingesCost / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>Cover Strip</td><td class="text-right">${{ (costs.coverStripCost / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>Post Caps</td><td class="text-right">${{ (costs.postCapsCost / 100) | round(2, 'common') | number_format(2)}}</td></tr>	
+	<tr><th class="info" colspan="2">Powder Coating</th></tr>
+	<tr><td>Gate</td><td class="text-right">${{ (costs.getPowderCoatGate / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>RHS 65x65</td><td class="text-right">${{ (costs.getPowderCoatRHS65x65 / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>D Latch</td><td class="text-right">${{ (costs.getPowderCoatDLatch / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>Hinges</td><td class="text-right">${{ (costs.getPowderCoatHingesCost / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>Drop Bolt</td><td class="text-right">${{ (costs.getPowderCoatDropBolt / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>Caps</td><td class="text-right">${{ (costs.getPowderCoatCaps / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td><strong>TOTAL:</strong></td><td class="text-right"><strong>${{ (costs.powderCoatCost / 100) | round(2, 'common') | number_format(2)}}</strong></td></tr>
+	<tr><th class="info" colspan="2">Extras</th></tr>
+	<tr><td>Labour</td><td class="text-right">${{ (costs.labourCost / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>Profit</td><td class="text-right">${{ (costs.profit / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><td>Installation</td><td class="text-right">${{ (costs.installation / 100) | round(2, 'common') | number_format(2)}}</td></tr>
+	<tr><th class="info" colspan="2">Total</th></tr>
+	<tr><td><strong>TOTAL COST</strong></td><td class="text-right"><strong>${{ (total / 100) | round(2, 'common') | number_format(2)}}</strong></td></tr>
+</table>

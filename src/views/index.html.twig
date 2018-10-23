@@ -1,0 +1,92 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Quotemaker{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Search By Last Name</h3>
+            {{ form_start(form, {'attr': {'class': 'form-horizonal'}}) }}
+            <div class="form-group">
+                {{ form_label(form.customerName, label|default(null), {'label_attr': {'class': 'col-sm-3 control-label text-right'}}) }}
+                <div class="col-sm-5">
+                {{ form_widget(form.customerName, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_widget(form.customerSearchButton, {'attr': {'class': 'btn btn-default'}}) }}
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+            <h3>Search By Quote ID</h3>
+            <div class="form-group">
+                {{ form_label(form.quoteId, label|default(null), {'label_attr': {'class': 'col-sm-3 control-label text-right'}}) }}
+                <div class="col-sm-5">
+                    <div class="input-group">
+                        <div class="input-group-addon">A-</div>{{ form_widget(form.quoteId, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    {{ form_widget(form.quoteIDSearchButton, {'attr': {'class': 'btn btn-default'}}) }}
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+
+        </div>
+
+        {% if data is not empty %}
+        <div class="col-md-6">
+            <h3>Matching Customers</h3>
+            <ul class="list-group">
+                {% for customer in data %}
+                    <li class="list-group-item"><a
+                                href="/customerDetails/{{ customer.id }}">{{ customer.formattedName }}</a><br>
+                                {{ customer.street }} {{ customer.city }} {{ customer.state }} {{ customer.postCode }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <a class="btn btn-primary" href="/newcustomer" role="button">New Customer</a>
+        </div>
+        {% endif %}
+
+        {% if noResults %}
+        <div class="col-md-6">
+            <h3>Matching Customers</h3>
+            <div class="alert alert-warning" role="alert">No matching customers found</div>
+            <a class="btn btn-primary" href="/newcustomer" role="button">New Customer</a>
+        </div>
+        {% endif %}
+
+        {% if noQuotes %}
+        <div class="col-md-6">
+            <div class="alert alert-warning" role="alert">No matching quote found</div>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <script type="text/javascript">
+    	window.onload = function() {
+            if ($("#customer_search_form_quoteId").val() != '') {
+                $("#customer_search_form_quoteId").focus().select();
+            } else {
+                $("#customer_search_form_customerName").focus().select();
+            }
+
+            $("#customer_search_form_customerSearchButton").on("click", function() {
+                $("#customer_search_form_quoteId").val("");
+            });
+
+            $("#customer_search_form_quoteIDSearchButton").on("click", function() {
+                $("#customer_search_form_customerName").val("");
+            });
+        };
+    </script>
+
+{% endblock %}

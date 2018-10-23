@@ -1,0 +1,65 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Quotemaker{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+  <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=4mdl9cbjkn4jukmi27f5gwvhwji7rt5flir6poer2psobk32"></script>
+  <script>
+  tinymce.init({
+    selector: '#emailArea'
+  });
+  </script>
+
+    <form class="form-horizontal" method="POST" action="/sendQuoteByEmail">
+        <div class="form-group">
+            <label for="toEmail" class="col-sm-2 control-label">To:</label>
+            <div class="col-sm-10">
+                <input type="text" name="toEmail" class="form-control" placeholder="Email" value="{{ customer.email }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ccEmail" class="col-sm-2 control-label">CC:</label>
+            <div class="col-sm-10">
+                <input type="text" name="ccEmail" class="form-control" placeholder="Optional">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="subject" class="col-sm-2 control-label">Subject:</label>
+            <div class="col-sm-10">
+                <input type="text" name="subject" class="form-control" placeholder="Subject" value="Quote">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Attachment:</label>
+            <div class="col-sm-10">
+                <a class="btn btn-primary" href="/printQuote/{{ quote.ID }}" role="button" target="_blank"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Quote {{ quote.quoteNumber }}</a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="body" class="col-sm-2 control-label">Message:</label>
+            <div class="col-sm-10">
+                <textarea id="emailArea" class="form-control" rows="40" name="body">
+				{{ bodyText }}
+				{{ footerText }}               
+                </textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success pull-right" name="add" value="add">Send</button>
+            </div>
+        </div>
+
+        <input type="hidden" name="quoteId" value="{{ quote.id }}">
+
+    </form>
+
+{% endblock %}

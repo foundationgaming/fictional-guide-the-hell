@@ -1,0 +1,91 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Quotemaker{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-6">
+         <h3>{{ customer.formattedName }}</h3>
+		 <address>
+			 {{customer.street}}<br>{{customer.city}} {{customer.state}} {{ customer.postcode }}<br>
+			 <abbr title="Phone1">Phone1:</abbr> {{customer.phone}}<br>
+			 <abbr title="Phone2">Phone2:</abbr> {{customer.mobile}}<br>
+			 <a href="mailto:{{customer.email}}">{{customer.email}}</a>
+		 </address>
+	</div>
+	<div class="col-md-6">
+		<a class="btn btn-warning" href="/editCustomer/{{customer.id}}" role="button">Edit Customer</a>
+		<a id="newQuoteBtn" class="btn btn-primary" href="/newquote/{{customer.id}}" role="button">New Quote</a>
+	</div>
+</div>
+
+{% if quotes is not empty %}
+<div class="row">
+	<div class="col-md-12">
+		<h4>Quotes for this customer</h4>
+		<table class="table table-striped">
+			<tr>
+				<th class="myclass">Quote ID</th>
+				<th class="myclass">Amount</th>
+				<th class="myclass">Date</th>				
+				<th class="myclass"></th>				
+			</tr>
+			{% for quote in quotes %}
+			<tr>
+				<td><a href="/newquote5/{{ quote.ID }}">{{ quote.quoteNumber }}</a></td>
+				<td>{{ quote.totalIncGST }}</td>
+				<td>{{ quote.quoteDate|date('d-m-Y')}}</td>
+                <td><a href="/deletequote/{{ quote.ID }}" onclick="return confirm('Are you sure you want to delete this quote?')">Delete</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+{% endif %}
+
+<!-- Modal -->
+<div id="suModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Confirmation required:</h4>
+      </div>      
+      <div class="modal-body">
+        <p>Is this quote based on Site Unseen?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="btnYes">Yes</button>
+        <button type="button" class="btn btn-danger" id="btnNo">No</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+	window.onload = function() {
+    	$( "#newQuoteBtn" ).click(function() {
+            $("#suModal").modal('toggle');
+            return false;
+    	});
+
+    	$( "#btnYes" ).click(function() {
+			// do something...
+  		  	$("#suModal").modal('hide');
+  		  window.location.href = "/newquote/{{customer.id}}/1";
+		});
+
+    	$( "#btnNo" ).click(function() {
+    		$("#suModal").modal('hide');
+    		// redirect     		
+    		window.location.href = "/newquote/{{customer.id}}/0";
+		});    	
+    };
+</script>
+
+{% endblock %}

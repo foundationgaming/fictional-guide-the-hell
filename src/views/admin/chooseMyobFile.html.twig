@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Quotemaker{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+{#    {% for row in data %} #}
+        <div class="well"><p>Select the MYOB file you wish to use with this application.</p></div>
+{#        <form action="/admin/chooseMyobFile">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="companyFile" value="{{row.Uri}}" {% if loop.first %}checked{% endif %}>
+                    {{row.Name}}
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+#}        
+        {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}        
+        
+{#    {% endfor %} #}
+{% endblock %}
